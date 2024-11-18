@@ -27,5 +27,15 @@ export class ProductService extends PrismaClient implements OnModuleInit {
 
   }
 
+  findOne(id: number) {
+    return this.product.findUnique({ where: { id } });
+  }
+
+  update(id: number, updateProductDto: UpdateProductDto) {
+    const { id: __, ...data } = updateProductDto;
+
+    return this.product.update({ where: { id }, data: data });
+  }
+
 
 }
